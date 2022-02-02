@@ -9231,10 +9231,12 @@
   	},
 
   	_animateZoom: function (e) {
-  		var scale = this._map.getZoomScale(e.zoom),
-  		    offset = this._map._latLngBoundsToNewLayerBounds(this._bounds, e.zoom, e.center).min;
-
-  		setTransform(this._image, offset, scale);
+			if (this._map) {
+				var scale = this._map.getZoomScale(e.zoom),
+						offset = this._map._latLngBoundsToNewLayerBounds(this._bounds, e.zoom, e.center).min;
+	
+				setTransform(this._image, offset, scale);
+			}
   	},
 
   	_reset: function () {
@@ -9875,9 +9877,11 @@
   	},
 
   	_animateZoom: function (e) {
-  		var pos = this._map._latLngToNewLayerPoint(this._latlng, e.zoom, e.center),
-  		    anchor = this._getAnchor();
-  		setPosition(this._container, pos.add(anchor));
+			if (this._map) {
+				var pos = this._map._latLngToNewLayerPoint(this._latlng, e.zoom, e.center),
+						anchor = this._getAnchor();
+				setPosition(this._container, pos.add(anchor));
+			}
   	},
 
   	_adjustPan: function () {
